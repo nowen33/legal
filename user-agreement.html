@@ -1,90 +1,248 @@
 <!doctype html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>夜邮局 - 用户协议</title>
-    <meta name="description" content="夜邮局用户协议" />
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
-    <main class="wrap">
-      <section class="card">
-        <nav class="nav">
-          <a class="pill active" href="./user-agreement.html">用户协议</a>
-          <a class="pill" href="./privacy-policy.html">隐私政策</a>
-        </nav>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>用户协议 · 夜邮局</title>
+  <meta name="description" content="夜邮局用户协议" />
+  <style>
+    /* ── 设计 Token（与 App 一致）── */
+    :root {
+      --bg:        hsl(222 30% 8%);
+      --bg-card:   hsl(222 25% 11%);
+      --fg:        hsl(45 30% 92%);
+      --fg-sec:    hsl(45 20% 72%);
+      --fg-muted:  hsl(220 15% 52%);
+      --primary:   hsl(38 70% 55%);
+      --border:    hsl(222 20% 18%);
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg:       #f5f4f0;
+        --bg-card:  #ffffff;
+        --fg:       #1a1917;
+        --fg-sec:   #3d3b35;
+        --fg-muted: #8a8782;
+        --primary:  #9a6110;
+        --border:   #e5e3de;
+      }
+    }
 
-        <h1>用户协议</h1>
-        <p class="meta">更新日期：2026 年 3 月 15 日 ｜ 生效日期：2026 年 3 月 15 日</p>
+    /* ── 基础重置 ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        <p>
-          欢迎使用「夜邮局」（以下简称“本应用”）。本应用由独立开发者刘锐（以下简称“我们”）开发和运营。
-          请你在使用本应用前，仔细阅读并充分理解本《用户协议》的全部内容。当你点击同意或继续使用本应用，
-          即表示你已阅读、理解并同意受本协议约束。如你不同意本协议，请停止使用本应用。
-        </p>
+    html {
+      background: var(--bg);
+      /* iOS 顶部/底部安全区 */
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    }
 
-        <h2>一、服务概述</h2>
-        <p>「夜邮局」是一款情绪记录与自我关怀应用，核心功能包括：</p>
-        <ul>
-          <li>文字投递：通过键盘输入记录内容；</li>
-          <li>语音投递：通过语音识别将口述内容转为文字；</li>
-          <li>图片附件：从相册选取图片附加到信件（最多 18 张）；</li>
-          <li>主题分类：工作、关系、自我、身体、家庭、未来；</li>
-          <li>信件管理：封存、查看、放下（释放）信件；</li>
-          <li>iCloud 同步：通过 Apple iCloud 在你的设备间同步。</li>
-        </ul>
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.9;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
 
-        <h2>二、账号与登录</h2>
-        <ol>
-          <li>本应用仅支持通过“通过 Apple 登录”（Sign in with Apple）进行登录。</li>
-          <li>你使用 Apple ID 登录即完成注册，无需手机号注册。</li>
-          <li>你应妥善保管 Apple ID 账号，因账号管理不当造成的损失由你自行承担。</li>
-        </ol>
+    /* ── 布局 ── */
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 24px 20px 60px;
+    }
 
-        <h2>三、用户行为规范</h2>
-        <ol>
-          <li>你应合法使用本应用，不得利用本应用实施违法违规行为。</li>
-          <li>你发布或记录的内容由你自行负责，不得包含法律法规禁止的信息。</li>
-          <li>本应用为个人记录工具，不提供公开社交传播功能。</li>
-        </ol>
+    /* ── 顶部导航胶囊 ── */
+    .nav {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+    .nav a {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 14px;
+      text-decoration: none;
+      color: var(--fg-muted);
+      transition: all 0.15s;
+    }
+    .nav a.active {
+      border-color: var(--primary);
+      color: var(--primary);
+      font-weight: 500;
+    }
 
-        <h2>四、知识产权</h2>
-        <ol>
-          <li>本应用相关代码、界面、文案、图标等知识产权归我们所有。</li>
-          <li>你在本应用中记录的文字与图片内容，权利归你所有。</li>
-        </ol>
+    /* ── 标题区 ── */
+    .doc-title {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--fg);
+      margin-bottom: 6px;
+    }
+    .doc-meta {
+      font-size: 13px;
+      color: var(--fg-muted);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
 
-        <h2>五、免责声明</h2>
-        <ol>
-          <li>本应用依赖 Apple iCloud 进行同步。因 Apple 服务、网络异常等导致的同步延迟或失败，我们不承担责任。</li>
-          <li>因不可抗力（自然灾害、政策变化、系统故障等）导致服务中断的，我们不承担责任。</li>
-          <li>本应用不提供心理咨询或医疗建议，仅用于个人记录和自我关怀。</li>
-        </ol>
+    /* ── 内容卡片 ── */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 20px;
+      margin-bottom: 16px;
+    }
 
-        <h2>六、服务变更与终止</h2>
-        <ol>
-          <li>我们可根据产品发展对服务进行更新、调整、暂停或终止，并通过合理方式通知你。</li>
-          <li>你可随时停止使用本应用，或在设置中发起账号注销。</li>
-        </ol>
+    /* ── 正文排版 ── */
+    .intro {
+      font-size: 15px;
+      color: var(--fg-sec);
+      line-height: 1.95;
+      margin-bottom: 4px;
+    }
 
-        <h2>七、适用法律与争议解决</h2>
-        <ol>
-          <li>本协议适用中华人民共和国法律。</li>
-          <li>争议应先协商解决；协商不成的，提交开发者所在地有管辖权的人民法院处理。</li>
-        </ol>
+    h2 {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-top: 28px;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
 
-        <h2>八、联系我们</h2>
-        <p>若你对本协议有疑问或建议，请通过以下方式联系：</p>
-        <ul>
-          <li>开发者：刘锐</li>
-          <li>联系邮箱：ownerhere@163.com</li>
-        </ul>
-        <p>我们将在收到请求后 15 个工作日内回复。</p>
+    h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--fg);
+      margin-top: 16px;
+      margin-bottom: 8px;
+    }
 
-        <hr />
-        <p class="footer">感谢你信任并使用「夜邮局」。愿今晚先轻一点。</p>
-      </section>
-    </main>
-  </body>
+    p {
+      font-size: 15px;
+      color: var(--fg-sec);
+      line-height: 1.95;
+      margin-bottom: 10px;
+    }
+
+    ul, ol {
+      font-size: 15px;
+      color: var(--fg-sec);
+      line-height: 1.9;
+      padding-left: 20px;
+      margin-bottom: 10px;
+    }
+    li { margin-bottom: 4px; }
+    li::marker { color: var(--primary); }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+    a:hover { border-bottom-color: var(--primary); }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 28px 0 20px;
+    }
+
+    /* ── 页脚 ── */
+    .footer {
+      font-size: 13px;
+      color: var(--fg-muted);
+      text-align: center;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <nav class="nav">
+      <a href="./user-agreement.html" class="active">用户协议</a>
+      <a href="./privacy-policy.html">隐私政策</a>
+    </nav>
+
+    <h1 class="doc-title">用户协议</h1>
+    <p class="doc-meta">更新日期：2026 年 3 月 15 日&emsp;生效日期：2026 年 3 月 15 日</p>
+
+    <div class="card">
+      <p class="intro">
+        欢迎使用「夜邮局」（以下简称"本应用"）。本应用由独立开发者刘锐（以下简称"我们"）开发和运营。请你在使用本应用前，仔细阅读并充分理解本协议的全部内容。当你点击同意或继续使用本应用，即表示你已阅读、理解并同意受本协议约束。如你不同意，请停止使用本应用。
+      </p>
+
+      <h2>一、服务概述</h2>
+      <p>「夜邮局」是一款情绪记录与自我关怀应用，核心功能包括：</p>
+      <ul>
+        <li>文字投递：通过键盘输入记录内容；</li>
+        <li>语音投递：通过语音识别将口述内容转为文字；</li>
+        <li>图片附件：从相册选取图片附加到信件（最多 18 张）；</li>
+        <li>主题分类：工作、关系、自我、身体、家庭、未来；</li>
+        <li>信件管理：封存、查看、放下（释放）信件；</li>
+        <li>iCloud 同步：通过 Apple iCloud 在你的设备间同步。</li>
+      </ul>
+
+      <h2>二、账号与登录</h2>
+      <ol>
+        <li>本应用仅支持通过「通过 Apple 登录」（Sign in with Apple）进行登录；</li>
+        <li>你使用 Apple ID 登录即完成注册，无需手机号注册；</li>
+        <li>你应妥善保管 Apple ID 账号，因账号管理不当造成的损失由你自行承担。</li>
+      </ol>
+
+      <h2>三、用户行为规范</h2>
+      <ol>
+        <li>你应合法使用本应用，不得利用本应用实施违法违规行为；</li>
+        <li>你发布或记录的内容由你自行负责，不得包含法律法规禁止的信息；</li>
+        <li>本应用为个人记录工具，不提供公开社交传播功能。</li>
+      </ol>
+
+      <h2>四、知识产权</h2>
+      <ol>
+        <li>本应用相关代码、界面、文案、图标等知识产权归我们所有；</li>
+        <li>你在本应用中记录的文字与图片内容，权利归你所有。</li>
+      </ol>
+
+      <h2>五、免责声明</h2>
+      <ol>
+        <li>本应用依赖 Apple iCloud 进行同步。因 Apple 服务、网络异常等导致的同步延迟或失败，我们不承担责任；</li>
+        <li>因不可抗力（自然灾害、政策变化、系统故障等）导致服务中断的，我们不承担责任；</li>
+        <li>本应用不提供心理咨询或医疗建议，仅用于个人记录和自我关怀。</li>
+      </ol>
+
+      <h2>六、服务变更与终止</h2>
+      <ol>
+        <li>我们可根据产品发展对服务进行更新、调整、暂停或终止，并通过合理方式通知你；</li>
+        <li>你可随时停止使用本应用，或在设置中发起账号注销。</li>
+      </ol>
+
+      <h2>七、适用法律与争议解决</h2>
+      <ol>
+        <li>本协议适用中华人民共和国法律；</li>
+        <li>争议应先协商解决；协商不成的，提交开发者所在地有管辖权的人民法院处理。</li>
+      </ol>
+
+      <h2>八、联系我们</h2>
+      <p>若你对本协议有疑问或建议，请通过以下方式联系：</p>
+      <ul>
+        <li>开发者：刘锐</li>
+        <li>联系邮箱：<a href="mailto:ownerhere@163.com">ownerhere@163.com</a></li>
+      </ul>
+      <p>我们将在收到请求后 15 个工作日内回复。</p>
+
+      <hr />
+      <p class="footer">感谢你信任并使用「夜邮局」。<br>愿今晚先轻一点。</p>
+    </div>
+
+  </div>
+</body>
 </html>
